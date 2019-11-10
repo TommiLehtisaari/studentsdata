@@ -7,8 +7,11 @@ pipeline {
 
     stages {
         stage('maven'){
+            environment {
+                STUDENTDATA_SECRET = credentials('STUDENTDATA_SECRET')
+            }
             steps {
-                sh 'mvn --version'
+                sh 'printenv'
             }
         }
     }
