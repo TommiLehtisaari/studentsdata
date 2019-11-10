@@ -1,18 +1,16 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven:3.6.2-jdk-11'
-            args '-v /root/.m2:/root/.m2'
-        }
-    }
-
     stages {
-        stage('maven'){
+        stage('Build'){
+            agent {
+                docker {
+                    image 'maven:3.6.2-jdk-11'
+                    args '-v /root/.m2:/root/.m2'
+                }
+            }
             environment {
                 STUDENTDATA_SECRET = credentials('STUDENTDATA_SECRET')
             }
             steps {
-                sh 'printenv'
                 sh 'mvn -B -DskipTests clean package'
             }
         }
