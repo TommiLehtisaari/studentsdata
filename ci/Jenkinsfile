@@ -12,6 +12,7 @@ pipeline {
                 STUDENTDATA_SECRET = credentials('STUDENTDATA_SECRET')
             }
             steps {
+                sh 'printenv'
                 sh 'mvn -B -DskipTests clean package'
             }
         }
